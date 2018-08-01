@@ -19,22 +19,22 @@ app.use((req, res, next) => {
   var log = `${now}: ${req.method} ${req.path}`;
   console.log(log);
   fs.appendFile('server.log', log + '\n', (err) => {
-    console.log('Could not append lot to file');
+    console.log('Could not append log to file');
   });
   next();//WON'T WORK WITHOUT NEXT
 });
 
 //registering under maintenance middleware
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
   // res.render('maintenance.hbs');
-});
+//});
 
 //exports everyting inside public to the root of the path: localhost:3000/help.html
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
   // res.send('<h1>Hello Express</h1>');
-  res.render('Home.hbs', {
+  res.render('home.hbs', {
     aboutTitle: 'Home Page',
     welcomeMessage: 'Welcome to my website'
   });
