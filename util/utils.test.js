@@ -24,3 +24,10 @@ it('should expect some values', () => {
 
   expect(obj).toInclude({age: 19});
 });
+
+it('should async add two numbers', (done) => {
+  utils.addAsync(4,5,(res) => {
+    expect(res).toBe(9).toBeA('number');
+    done();
+  });
+});
