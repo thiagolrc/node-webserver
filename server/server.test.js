@@ -1,4 +1,5 @@
 const request = require('supertest');
+const expect = require('expect');
 
 var app = require('./server.js').app;
 
@@ -21,4 +22,15 @@ describe('Server Tests', () => {
       })
       .end(done);
   });
+});
+
+it('should return json object 2', (done) => {
+  request(app)
+    .get('/json')
+    .expect(200)
+    .expect((res) =>{//function with response as argument
+      //using expect lib to assert specific prop
+      expect(res.body).toInclude({age: 19})
+    })
+    .end(done);
 });
